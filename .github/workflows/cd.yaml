@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         ssh_key: ${{ secrets.SSH_KEY }}
-        seed: ${{ env.SEED }}
+        seed: ${{ vars.SEED }}
     steps:
       - uses: actions/checkout@v3
       - name: Python run for seed from GitHub Environmental Variable
