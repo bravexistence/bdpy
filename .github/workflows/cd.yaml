@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Python run for seed from GitHub Environmental Variable
         run:
-          result=$(python3 task_Morozov_Vitaly_prime_checksum.py "$seed")
-          echo "$result"
+          result=$(python3 task_Morozov_Vitaly_prime_checksum.py "$seed") \
+          echo "$result" \
           echo "answer=$result" >> "$GITHUB_ENV"
       - name: Set SSH key
         run: |
