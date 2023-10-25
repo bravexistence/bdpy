@@ -1,0 +1,22 @@
+name: CI Workflow
+on:
+  push:
+    branches:
+      - main
+      - CD_branch
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+        ssh_key: ${{ secrets.SHH_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set SSH key
+        run:
+          mkdir -p ~/.ssh && \
+          echo "&ssh_key" | base64 -d > ~/.ssh/id_rsa && \
+          chmod 0600 ~/.ssh/id_rsa
+      - name: list remote dir
+        run: ssh -o StrictHostKeyChecking=no bdb2c2023q4_guest_3@brain-client.bigdatateam.org
+      - run: echo OK
