@@ -1,4 +1,5 @@
 import random
+import sys
 
 def is_prime(x: int) -> bool:
     checking = True
@@ -19,7 +20,8 @@ def primes(count: int) -> list[int]:
         if is_prime(x) == True:
             simple_numbers.append(x)
             n += 1
-    random.seed(100)
+    seed_number = int(sys.argv[1])
+    random.seed(seed_number)
     random.shuffle(simple_numbers)
     return (simple_numbers)
 
@@ -45,3 +47,5 @@ def pipeline() -> int:
 
 def main():
     print(pipeline())
+
+main()

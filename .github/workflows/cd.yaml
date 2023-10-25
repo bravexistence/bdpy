@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
         ssh_key: ${{ secrets.SSH_KEY }}
+        seed: ${{ env.SEED }}
     steps:
       - uses: actions/checkout@v3
+      - name: Python run for seed from GitHub Environmental Variable
+        run:
+          answer=$(python3 task_Morozov_Vitaly_prime_checksum.py "$seed")
       - name: Set SSH key
         run: |
           mkdir -p ~/.ssh && \
@@ -20,7 +24,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no bdb2c2023q4_guest_3@brain-client.bigdatateam.org <<EOF
           mkdir -p ~/vitaly_morozov97
-          touch ~/vitaly_morozov97/task41.txt
+          echo "$answer" > ~/vitaly_morozov97/task41.txt
           exit
           EOF
-      - run: echo OK
