@@ -15,7 +15,7 @@ jobs:
       - name: Python run for seed from GitHub Environmental Variable
         run:
           result=$(python3 task_Morozov_Vitaly_prime_checksum.py "$seed")
-          echo $result
+          echo "$result"
           echo "answer=$result" >> "$GITHUB_ENV"
       - name: Set SSH key
         run: |
