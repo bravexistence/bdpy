@@ -16,9 +16,6 @@ jobs:
         run:
           result=$(python3 task_Morozov_Vitaly_prime_checksum.py "$seed")
           echo "result=$result" >> $GITHUB_ENV
-      - name: Saving answer in env
-        env:
-          answer: ${{ env.result }}
       - name: Set SSH key
         run: |
           mkdir -p ~/.ssh && \
@@ -31,3 +28,5 @@ jobs:
           echo "$answer" > ~/vitaly_morozov97/task41.txt
           exit
           EOF
+        env:
+          answer: ${{ env.result }}
