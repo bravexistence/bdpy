@@ -21,6 +21,13 @@ jobs:
           mkdir -p ~/.ssh && \
           echo "$ssh_key" | base64 -d > ~/.ssh/id_rsa && \
           chmod 0600 ~/.ssh/id_rsa
+      - name: Create empty file task41.txt
+        run: |
+          ssh -o StrictHostKeyChecking=no bdb2c2023q4_guest_3@brain-client.bigdatateam.org <<EOF
+          mkdir -p ~/vitaly_morozov97
+          touch ~/vitaly_morozov97/task41.txt
+          exit
+          EOF
       - name: File with answer creation
         run: |
           ssh -o StrictHostKeyChecking=no bdb2c2023q4_guest_3@brain-client.bigdatateam.org <<EOF
